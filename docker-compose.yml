@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  tp_symfony:
+    build:
+      context: ./tp_repo/
+      dockerfile: Dockerfile
+    container_name: symfony_app_tp
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./tp_repo:/app:delegated
+    environment:
+      APP_ENV: dev
+      DATABASE_URL: "postgresql://app:1234@database:5432/app?serverVersion=16&charset=utf8"
+
+  database:
+    image: postgres:16
+    container_name: tp-database
+    environment:
+      POSTGRES_DB: app
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: "1234"
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    container_name: adminer-tp-symfony
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+
+volumes:
+  db_data:
