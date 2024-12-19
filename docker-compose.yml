@@ -3,13 +3,13 @@ version: '3.8'
 services:
   tp_symfony:
     build:
-      context: ./tp_repo/
+      context: ./tp_code/
       dockerfile: Dockerfile
     container_name: symfony_app_tp
     ports:
       - "8000:8000"
     volumes:
-      - ./tp_repo:/app:delegated
+      - ./tp_code:/app:delegated
     environment:
       APP_ENV: dev
       DATABASE_URL: "postgresql://app:1234@database:5432/app?serverVersion=16&charset=utf8"
