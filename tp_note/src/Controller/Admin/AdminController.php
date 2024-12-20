@@ -6,18 +6,19 @@ namespace App\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends AbstractController
 {
-    #[Route(path: '/admin', name: 'page_admin')]
-    public function admin()
+    #[Route(path: '/user-profile', name: 'user_page')]
+    public function userProfile(): Response
     {
-        return $this->render(view: 'admin/admin.html.twig');
+        return $this->render('auth/user_profile.html.twig');
     }
 
-    #[Route(path: '/admin/users', name: 'page_admin_users')]
-    public function users()
+    #[Route(path: '/admin', name: 'admin_index')]
+    public function adminIndex(): Response
     {
-        return $this->render(view: 'admin/admin_users.html.twig');
+        return $this->render('auth/admin_index.html.twig');
     }
 }

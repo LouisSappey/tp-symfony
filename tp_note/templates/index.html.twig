@@ -4,26 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
+    <!-- Add Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    {% if app.user %}
-        <p>Bienvenue, {{ app.user.username }} !</p>
-        <p>Nom: {{ app.user.username }}</p>
-        <p>Email: {{ app.user.email }}</p>
-        <a href="{{ path('app_logout') }}">Se déconnecter</a>
+<body class="bg-gray-100 p-4">
+    <div class="container mx-auto">
+        {% if app.user %}
+            <div class="bg-white p-4 rounded shadow-md">
+                <p class="text-lg">Bienvenue, {{ app.user.username }} !</p>
+                <p class="text-gray-700">Nom: {{ app.user.username }}</p>
+                <p class="text-gray-700">Email: {{ app.user.email }}</p>
+                <a href="{{ path('app_logout') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Se déconnecter</a>
 
-        {% if 'ROLE_ADMIN' in app.user.roles %}
-            <a href="{{ path('admin_index') }}">Accéder à l'admin</a>
+                {% if 'ROLE_ADMIN' in app.user.roles %}
+                    <a href="{{ path('admin_index') }}" class="block mt-2 bg-green-500 text-white px-4 py-2 rounded">Accéder à l'admin</a>
+                {% endif %}
+                {% if 'ROLE_USER' in app.user.roles %}
+                    <a href="{{ path('user_page') }}" class="block mt-2 bg-blue-500 text-white px-4 py-2 rounded">Accéder à votre profil</a>
+                {% endif %}
+                {% if 'ROLE_BANNED' in app.user.roles %}
+                    <p class="mt-2 text-red-500">Vous êtes banni. Vous n'avez pas accès au site.</p>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="bg-white p-4 rounded shadow-md">
+                <p class="text-gray-700">Vous n'êtes pas connecté.</p>
+                <a href="{{ path('page_login') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Se connecter</a>
+            </div>
         {% endif %}
-        {% if 'ROLE_USER' in app.user.roles %}
-            <a href="{{ path('page_login') }}">Accéder à votre profil</a>
-        {% endif %}
-        {% if 'ROLE_BANNED' in app.user.roles %}
-            <p>Vous êtes banni. Vous n'avez pas accès au site.</p>
-        {% endif %}
-    {% else %}
-        <p>Vous n'êtes pas connecté.</p>
-        <a href="{{ path('page_login') }}">Se connecter</a>
-    {% endif %}
+    </div>
 </body>
 </html>

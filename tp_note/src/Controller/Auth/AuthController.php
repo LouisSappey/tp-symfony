@@ -21,12 +21,6 @@ class AuthController extends AbstractController
         return $this->render('auth/login.html.twig');
     }
 
-    #[Route(path: '/register', name: 'page_register')]
-    public function register(): Response
-    {
-        return $this->render('auth/register.html.twig');
-    }
-
     #[Route(path: '/forgot-password', name: 'page_forgot_password')]
     public function forgotPassword(
         Request $request,
@@ -45,7 +39,6 @@ class AuthController extends AbstractController
         if ($email) {
             $user = $userRepository->findOneBy(['email' => $email]);
             
-            // dd($email, $user);
             if (!$user) {
                 $this->addFlash('error', 'Aucun utilisateur trouvé avec cette adresse email.');
                 return $this->render('auth/forgot.html.twig');
@@ -73,7 +66,6 @@ class AuthController extends AbstractController
                 $mailer->send($emailMessage);
                 $this->addFlash('success', 'Un lien de réinitialisation a été envoyé à votre adresse email.');
             } catch (\Exception $e) {
-                dd($e);
                 $this->addFlash('error', 'Une erreur est survenue lors de l\'envoi de l\'email.');
             }
     
@@ -83,8 +75,6 @@ class AuthController extends AbstractController
         // Affiche le formulaire de réinitialisation
         return $this->render('auth/forgot.html.twig');
     }
-    
-    
 
     #[Route(path: '/reset-password/{token}', name: 'page_reset_password')]
     public function resetPassword(
@@ -139,5 +129,4 @@ class AuthController extends AbstractController
         // Afficher le formulaire de réinitialisation
         return $this->render('auth/reset.html.twig', ['token' => $token]);
     }
-    
 }
