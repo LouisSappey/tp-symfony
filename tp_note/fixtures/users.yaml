@@ -2,15 +2,18 @@ users:
   - username: "user1"
     email: "user1@example.com"
     password: "password123"
-    account_status: "admin"
+    account_status: "valid"
+    roles: ["ROLE_ADMIN"]
 
   - username: "user2"
     email: "user2@example.com"
     password: "password123"
-    account_status: "user"
+    account_status: "valid"
+    roles: ["ROLE_USER"]
   
   - username: "user3"
     email: "user3@example.com"
     password: "password123"
     account_status: "banned"
+    roles: ["ROLE_BANNED"]
   

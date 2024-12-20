@@ -29,8 +29,22 @@ After that you can go to streemi folder and launch fixtures:
 
 -To see if email sent: localhost:8090
 
-You can log with this user:
+You can log with this user with role admin:
 
 email: user1@example.com
+
+password: password123
+
+
+For user with role user:
+
+email: user2@example.com
+
+password: password123
+
+
+For user with role banned:
+
+email: user3@example.com
 
 password: password123

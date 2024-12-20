@@ -45,7 +45,7 @@ class AppFixtures extends Fixture
                  ->setEmail($data['email'])
                  ->setPassword($this->passwordHasher->hashPassword($user, $data['password']))
                  ->setAccountStatus(UserAccountStatusEnum::from($data['account_status']))
-                 ->setRoles(['ROLE_USER']);
+                 ->setRoles($data['roles']);
 
             $manager->persist($user);
             $userEntities[$data['email']] = $user;

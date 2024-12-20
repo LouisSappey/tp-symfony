@@ -123,11 +123,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     public function getRoles(): array
-{
-    // Retourne un tableau contenant les rôles de l'utilisateur
-    // Exemple : si vous avez une propriété `roles` stockée en base de données
-    return $this->roles ?? ['ROLE_USER'];
-}
+    {
+        // Guarantee every user has at least ROLE_USER
+        $roles = $this->roles;    
+        return array_unique($roles);
+    }
+    
 
 public function getUserIdentifier(): string
 {
