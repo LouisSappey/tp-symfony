@@ -1,0 +1,15 @@
+users:
+  - username: "user1"
+    email: "user1@example.com"
+    password: "password123"
+    account_status: "valid"
+
+  - username: "user2"
+    email: "user2@example.com"
+    password: "password456"
+    account_status: "pending"
+
+  - username: "user3"
+    email: "louis.sappey@gmail.com"
+    password: "password123"
+    account_status: "valid"

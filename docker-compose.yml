@@ -1,22 +1,22 @@
 version: '3.8'
 
 services:
-  tp_symfony:
+  symfony_app_tp:
     build:
-      context: ./tp_code/
+      context: ./tp_note/
       dockerfile: Dockerfile
-    container_name: symfony_app_tp
+    container_name: symfony_app_tp_note
     ports:
       - "8000:8000"
     volumes:
-      - ./tp_code:/app:delegated
+      - ./tp_note:/app:delegated
     environment:
       APP_ENV: dev
       DATABASE_URL: "postgresql://app:1234@database:5432/app?serverVersion=16&charset=utf8"
 
   database:
     image: postgres:16
-    container_name: tp-database
+    container_name: tp_note-database-1
     environment:
       POSTGRES_DB: app
       POSTGRES_USER: app
@@ -28,11 +28,17 @@ services:
 
   adminer:
     image: adminer
-    container_name: adminer-tp-symfony
+    container_name: adminer-tp_note
     ports:
       - 8080:8080
     depends_on:
       - database
+  
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog-tp_note
+    ports:
+      - "8090:8025"
 
 volumes:
   db_data:
