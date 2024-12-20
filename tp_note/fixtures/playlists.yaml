@@ -1,0 +1,6 @@
+playlists:
+  - name: "Playlist 1"
+    owner: "user1@example.com"
+
+  - name: "Playlist 2"
+    owner: "user2@example.com"

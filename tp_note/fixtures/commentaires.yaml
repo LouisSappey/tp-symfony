@@ -1,0 +1,6 @@
+commentaires:
+  - content: "This is a comment by user1."
+    author: "user1@example.com"
+
+  - content: "This is a comment by user2."
+    author: "user2@example.com"

@@ -1,0 +1,6 @@
+albums:
+  - title: "Album 1"
+    created_by: "user1@example.com"
+
+  - title: "Album 2"
+    created_by: "user2@example.com"

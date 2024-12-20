@@ -1,0 +1,8 @@
+artistes:
+  - name: "Artist 1"
+    followers:
+      - "user1@example.com"
+
+  - name: "Artist 2"
+    followers:
+      - "user2@example.com"
